@@ -10,4 +10,3 @@ def impute_data(data: np.ndarray, imputer=impute.SimpleImputer(strategy='mean'))
 
 def standardize_data(data: np.ndarray, scaler=preprocessing.StandardScaler()):
     return scaler.fit_transform(data)
-
