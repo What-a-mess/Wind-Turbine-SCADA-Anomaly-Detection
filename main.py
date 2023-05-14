@@ -15,11 +15,11 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def test_vanilla_autoencoder():
     epochs = 3000
-    data = data_load.load_turbine_standardized_data_without_time(
+    data = data_load.load_turbine_data_without_time(
         "data/Turbine_Data_Penmanshiel_11_2021-01-01_-_2021-07-01_1051.csv")
     data_imputer = KNNImputer(n_neighbors=10)
     data = data_process.impute_data(data)
-    data = data_process.normalize_data(data)
+    data = data_process.standardize_data(data)
     data = np.array(data, dtype='float32')
 
     k = 10
