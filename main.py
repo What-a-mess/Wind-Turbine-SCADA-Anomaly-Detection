@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 import data_load
 import data_process
-import model
+from autoencoder import model
 import train_model
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
