@@ -34,8 +34,8 @@ def autoencoder_test(test_X, test_y, model, batch_size):
     test_decode = model.forward(test_X)
     diff_vec = (test_decode - test_y).detach().cpu().numpy()
     res_error = np.sum(np.power(diff_vec, 2), axis=1)
-    print(test_decode)
-    print(test_y)
-    print(diff_vec)
+    # print(test_decode)
+    # print(test_y)
+    # print(diff_vec)
 
     return res_error
