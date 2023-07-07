@@ -5,8 +5,10 @@ This is a project for detecting anomaly data in wind turbine SCADA system
 ## Used Method
 
 - [RNN/LSTM/Vanilla] AE(Autoencoder)
+- CNN on timeseries
+- (TODO) TCN
 - (TODO) VAE
-- (perhaps TODO) GAN
+- ~~(perhaps TODO) GAN~~
 
 ## Credit
 
@@ -19,3 +21,4 @@ The dataset is come from [Penmanshiel Wind Farm Data](https://zenodo.org/record/
 - numpy
 - matplotlib
 - pandas
+- OmniXAI
