@@ -6,11 +6,11 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 class CNN(nn.Module):
-    def __init__(self, feature_num: int, window_size: int = 100, *args, **kwargs):
+    def __init__(self, feature_num: int, window_size: int, *args, **kwargs):
         super().__init__(*args, **kwargs)
         pool_size = 3
-        conv_kernel_sizes = [20, 5]
-        conv_channels = [feature_num, feature_num, 5]
+        conv_kernel_sizes = [3, 1]
+        conv_channels = [feature_num, feature_num, 40]
         maxpooling_kernel_sizes = [3, 3]
         fc_in_feature = self.cal_fc_features(window_size, conv_kernel_sizes, maxpooling_kernel_sizes)
         self.conv_layers = []
@@ -26,10 +26,9 @@ class CNN(nn.Module):
         # self.conv1 = nn.Conv1d(in_channels=feature_num, out_channels=feature_num, kernel_size=20).to(device)
         # self.maxPooling = nn.MaxPool1d(kernel_size=pool_size).to(device)
         # self.conv2 = nn.Conv1d(in_channels=feature_num, out_channels=5, kernel_size=5).to(device)
-        self.fc1 = nn.Linear(in_features=5 * fc_in_feature, out_features=20).to(device)
+        self.fc1 = nn.Linear(in_features=conv_channels[-1] * fc_in_feature, out_features=20).to(device)
         self.fc2 = nn.Linear(in_features=20, out_features=2).to(device)
         self.relu = nn.ReLU(True).to(device)
-        self.sigmoid = nn.Sigmoid().to(device)
 
     @staticmethod
     def cal_fc_features(L_in, conv_kernel_sizes, maxpooling_kernel_sizes, conv_layers_num: int = None):

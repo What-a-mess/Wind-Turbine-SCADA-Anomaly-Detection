@@ -9,7 +9,7 @@ def cnn_train(train_X, train_y, model, loss_fn, optimizer, batch_size):
     model.train()
     batch_num = int(size / batch_size + (0 if size % batch_size == 0 else 1))
     output_batches = range(0, batch_num, int(max(batch_num / 5, 1)))
-    print(output_batches)
+    # print(output_batches)
     for batch in range(batch_num):
         left = batch * batch_size
         X, y = train_X[left: left + batch_size], train_y[left: left + batch_size]
@@ -26,7 +26,8 @@ def cnn_train(train_X, train_y, model, loss_fn, optimizer, batch_size):
         optimizer.step()
 
         if batch in output_batches:
-            loss, current = loss.item(), (batch + 1) * len(X)
+            # print(len(X))
+            loss, current = loss.item(), (left + batch_size) if len(X) == batch_size else len(train_X)
             print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
 
 
